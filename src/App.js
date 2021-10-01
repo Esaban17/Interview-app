@@ -87,16 +87,13 @@ class App extends Component {
   postEmployee = async () => {
     let { form } = this.state;
     try {
+      const requestOptions = {
+        method: 'POST',
+        // headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      };
       // const result = await axios.post('http://dummy.restapiexample.com/api/v1/create', form);
-      const result = await fetch('http://dummy.restapiexample.com/api/v1/create', {
-        method: "POST",
-        //mode: "cors",
-        //cache: "no-cache",
-        //credentials: "same-origin",
-        body: JSON.stringify(form),
-        redirect: "follow",
-        referrer: "no-referrer",
-      });
+      const result = await fetch('http://dummy.restapiexample.com/api/v1/create', requestOptions);
       const data = await result.json();
       console.log(data);
       await this.getEmployees();
